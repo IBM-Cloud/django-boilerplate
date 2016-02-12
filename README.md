@@ -1,18 +1,16 @@
-# CF example app: ping-pong matching server
+# Django example app: ping-pong matching server
 
 This is an app to match ping-pong players with each other. It's currently an
 API only, so you have to use `curl` to interact with it.
 
-It has an [acceptance test suite][acceptance-test] you might like to look at.
-
 **Note**: We highly recommend that you use the latest versions of any software required by this sample application. 
 
-## Running on [Pivotal Web Services][pws]
+## Running on [IBM Bluemix](#)
 
 Log in.
 
 ```bash
-cf login -a https://api.run.pivotal.io
+cf login -a https://api.ng.bluemix.net
 ```
 
 Target your org / space. An empty space is recommended, to avoid naming collisions.
@@ -36,7 +34,7 @@ cf push -n mysubdomain
 Export the test host
 
 ```bash
-export HOST=http://mysubdomain.cfapps.io
+export HOST=http://mysubdomain.mybluemix.net
 ```
 
 Now follow the [interaction instructions](#interaction-instructions).
@@ -164,8 +162,6 @@ Future requests with different player IDs should not cause a match with someone
 who has already played. The program is not yet useful enough to
 allow pairs who've already played to play again.
 
-[acceptance-test]:https://github.com/cloudfoundry-samples/pong_matcher_acceptance
-[pws]:https://run.pivotal.io
 [python]:https://www.python.org
 [pip]:https://pip.pypa.io/en/latest/
 [django-deployment]:https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
