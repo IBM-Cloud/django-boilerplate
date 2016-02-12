@@ -24,7 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = [ 'localhost', '.cfapps.io' ]
+ALLOWED_HOSTS = [ 'localhost', '.mybluemix.net' ]
 
 
 # Application definition
@@ -65,15 +65,17 @@ url = urlparse(
             'mysql2://djangopong:djangopong@127.0.0.1:3306/pong_matcher_django_development'
             )
         )
+import json
+MYSQL = json.loads(os.environ['VCAP_SERVICES'])['cleardb'][0]['credentials']
 DATABASES = {
-    'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': url.path[1:],
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port,
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': MYSQL['name'],
+		'USER': MYSQL['username'],
+		'PASSWORD': MYSQL['password'],
+		'HOST': MYSQL['hostname'],
+		'PORT': MYSQL['port']
+	}
 }
 
 # Internationalization
